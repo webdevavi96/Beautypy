@@ -19,7 +19,13 @@ With just a few template tags, you can create modern, accessible, and responsive
 ## 📦 Installation
 
 ```bash
- pip install beautypy
+ pip install beautypy        #This command will not work beacuse the library is under testing phase. You will find the test version    download command bellow -->
+```
+
+**Currently this library is under testing phase so the test versoin download command is**:
+
+```bash
+pip install -i https://test.pypi.org/simple/ beautypy
 ```
 
 ## This library needs tailwind for styling, Install by this command
@@ -299,9 +305,3 @@ Beautypy is open-source. If you like the project, consider supporting it via [Bu
 
 **🔗 License**:
 MIT License © 2025 [webdevavi96 | Avinash](https://github.com/webdevavi96)
-
-**Install beautypy library for testing using this command**:
-
-```bash
-pip install -i https://test.pypi.org/simple/ beautypy
-```
