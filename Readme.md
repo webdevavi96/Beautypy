@@ -299,3 +299,9 @@ Beautypy is open-source. If you like the project, consider supporting it via [Bu
 
 **🔗 License**:
 MIT License © 2025 [webdevavi96 | Avinash](https://github.com/webdevavi96)
+
+**Install beautypy library for testing using this command**:
+
+```bash
+pip install -i https://test.pypi.org/simple/ beautypy
+```
