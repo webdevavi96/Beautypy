@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "beautypy"
+version = "0.0.2"
+description = "Reusable Django UI components and tags with Tailwind support"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [{ name = "Avinash Chaurasiya", email = "avinashchaurasiya902@gmail.com" }]
+keywords = ["django", "tailwind", "template tags", "ui", "components"]
+dependencies = ["django>=4.0"]
+requires-python = ">=3.7"
+
+[tool.setuptools]
+packages = ["beautypy", "beautypy.templatetags"]
+include-package-data = true
+
+[tool.setuptools.package-data]
+"beautypy" = ["templates/**/*", "static/**/*"]

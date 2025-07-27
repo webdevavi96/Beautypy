@@ -1,0 +1,5 @@
+include LICENSE
+include README.md
+recursive-include beautypy/templates *
+recursive-include beautypy/static *
+recursive-include beautypy/templatetags *.py

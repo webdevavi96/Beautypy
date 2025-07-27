@@ -1,0 +1,31 @@
+{
+  "name": "beautypy",
+  "version": "1.0.0",
+  "description": "**Beautypy** is a Django UI component library that simplifies your front-end development by offering pre-designed, reusable template tags like `{% Button %}`, `{% Alert %}`, `{% ContactForm %}`, and more.",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tailwindcss -i ./beautypy/static/src/beautypy.css -o ./beautypy/static/Bundles/CSSBundles/output.css --minify"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.3.5"
+  },
+  "dependencies": {
+    "browserslist": "^4.25.1",
+    "caniuse-lite": "^1.0.30001727",
+    "electron-to-chromium": "^1.5.191",
+    "escalade": "^3.2.0",
+    "fraction.js": "^4.3.7",
+    "nanoid": "^3.3.11",
+    "node-releases": "^2.0.19",
+    "normalize-range": "^0.1.2",
+    "picocolors": "^1.1.1",
+    "postcss-value-parser": "^4.2.0",
+    "source-map-js": "^1.2.1",
+    "update-browserslist-db": "^1.1.3"
+  }
+}
