@@ -120,6 +120,10 @@ In your head section, add this tag to load your Tailwind output.css file:
 
 ```bash
 {% LoadBeautypyCSS url ="output.css" %}
+
+or
+
+{% LoadBeautypyCSS %} #It will load TRailwind's CDN not idel for production.
 ```
 
 ## 🧩 Components
