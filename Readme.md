@@ -19,7 +19,7 @@ With just a few template tags, you can create modern, accessible, and responsive
 ## 📦 Installation
 
 ```bash
- pip install beautypy        #This command will not work beacuse the library is under testing phase. You will find the test version    download command bellow -->
+ pip install beautypy        #This command will not work beacuse the library is under testing phase. You will find the test version download command bellow -->
 ```
 
 **Currently this library is under testing phase so the test versoin download command is**:
