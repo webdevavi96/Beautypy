@@ -13,9 +13,15 @@ def LoadBeautypyJS():
     return format_html('<script src="{}" defer></script>', js_link)
 
 @register.simple_tag
-def LoadBeautypyCSS():
-    css_link = static("Bundles/CSSBundles/output.css")
-    return format_html('<link href="{}" rel="stylesheet">', css_link)
+def LoadBeautypyCSS(url=None):
+    css_link = static(url)
+    
+    if css_link:
+     return format_html('<link href="{}" rel="stylesheet">', css_link)
+    
+    else:
+        cdn = "https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"
+        return format_html('<script src="{}"></script>', cdn)
 
 @register.simple_tag
 def Button(label, type="button", variant="primary", css_class="", tag_id=None):

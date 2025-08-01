@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "beautypy"
-version = "0.0.2"
+version = "0.0.3"
 description = "Reusable Django UI components and tags with Tailwind support"
 readme = "README.md"
 license = { file = "LICENSE" }

@@ -116,6 +116,12 @@ In your templates, start by loading the custom tags:
 {% load Components %}
 ```
 
+In your head section, add this tag to load your Tailwind output.css file:
+
+```bash
+{% LoadBeautypyCSS url ="output.css" %}
+```
+
 ## 🧩 Components
 
  **🔘Button**:
