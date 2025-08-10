@@ -12,16 +12,17 @@ def LoadBeautypyJS():
     js_link = static("Bundles/JSBundles/beautypy.js")
     return format_html('<script src="{}" defer></script>', js_link)
 
+
 @register.simple_tag
 def LoadBeautypyCSS(url=None):
     css_link = static(url)
-    
-    if css_link:
-     return format_html('<link href="{}" rel="stylesheet">', css_link)
-    
-    else:
+
+    if css_link == None:
         cdn = "https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"
         return format_html('<script src="{}"></script>', cdn)
+    else:
+        return format_html('<link href="{}" rel="stylesheet">', css_link)
+
 
 @register.simple_tag
 def Button(label, type="button", variant="primary", css_class="", tag_id=None):
@@ -47,7 +48,13 @@ def Button(label, type="button", variant="primary", css_class="", tag_id=None):
 
 @register.simple_tag
 def Link(url, label, css_class="btn btn-link", tag_id=None):
-    return format_html('<a href="{}" class="{} rounded-md hover:bg-opacity-80 transition dureation-300" id="{}">{}</a>', url, css_class, tag_id, label)
+    return format_html(
+        '<a href="{}" class="{} rounded-md hover:bg-opacity-80 transition dureation-300" id="{}">{}</a>',
+        url,
+        css_class,
+        tag_id,
+        label,
+    )
 
 
 @register.simple_tag
@@ -70,12 +77,13 @@ def Alert(message, alert_type="info", css_class="alert", tag_id=None):
         classes,
         tag_id,
         message,
-        
     )
 
 
 @register.simple_tag
-def InputField(name, value="", input_type="text", css_class="form-control", tag_id=None):
+def InputField(
+    name, value="", input_type="text", css_class="form-control", tag_id=None
+):
     return format_html(
         '<input type="{}" name="{}" value="{}" class="{}" id="{}">',
         input_type,
@@ -102,7 +110,6 @@ def FormGroup(label, input_field):
     )
 
 
-
 @register.simple_tag
 def Toast(message, toast_type="info", tag_id=None):
     colors = {
@@ -117,8 +124,8 @@ def Toast(message, toast_type="info", tag_id=None):
         bg_color,
         tag_id,
         message,
-        
     )
+
 
 class BlockNode(Node):
     def __init__(self, nodelist, tag_name, css_class=None, title=None, tag_id=None):
@@ -181,7 +188,6 @@ class BlockNode(Node):
         return content
 
 
-
 def block_tag(tag_name, end_tag_name):
     def tag_func(parser, token):
         bits = token.split_contents()
@@ -190,7 +196,7 @@ def block_tag(tag_name, end_tag_name):
         kwargs = token_kwargs(args, parser)
 
         css_class = kwargs.get("css_class", None)
-        tag_id = kwargs.get("tag_id",None)
+        tag_id = kwargs.get("tag_id", None)
         title = kwargs.get("title", None)
 
         nodelist = parser.parse((end_tag_name,))
@@ -198,7 +204,6 @@ def block_tag(tag_name, end_tag_name):
         return BlockNode(nodelist, tag_name, css_class, title, tag_id)
 
     return tag_func
-
 
 
 register.tag("Section", block_tag("Section", "endSection"))

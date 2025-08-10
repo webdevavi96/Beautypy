@@ -78,6 +78,7 @@ module.exports = {
 ```
 
 **Use the Tailwind CLI to compile your CSS**:
+Give the correct path of your style.css/input.css
 
 ```bash
 npx tailwindcss -i ./static/css/style.css -o ./static/css/output.css --watch
@@ -240,6 +241,8 @@ Groups a label and input together:
 
 **📚 Navbar**:
 Build a responsive navbar:
+
+<img src="/beautypy/static/images/nav.png">
 
 ```bash
 {% Navbar css_class="bg-blue-600 p-4" %}

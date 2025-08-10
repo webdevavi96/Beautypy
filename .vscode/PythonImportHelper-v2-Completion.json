@@ -61,7 +61,7 @@
         "kind": 2,
         "importPath": "beautypy.templatetags.Components",
         "description": "beautypy.templatetags.Components",
-        "peekOfCode": "def LoadBeautypyJS():\n    js_link = static(\"Bundles/JSBundles/beautypy.js\")\n    return format_html('<script src=\"{}\" defer></script>', js_link)\n@register.simple_tag\ndef LoadBeautypyCSS(url=None):\n    css_link = static(url)\n    if css_link:\n     return format_html('<link href=\"{}\" rel=\"stylesheet\">', css_link)\n    else:\n        cdn = \"https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4\"",
+        "peekOfCode": "def LoadBeautypyJS():\n    js_link = static(\"Bundles/JSBundles/beautypy.js\")\n    return format_html('<script src=\"{}\" defer></script>', js_link)\n@register.simple_tag\ndef LoadBeautypyCSS(url=None):\n    css_link = static(url)\n    if css_link == None:\n        cdn = \"https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4\"\n        return format_html('<script src=\"{}\"></script>', cdn)\n    else:",
         "detail": "beautypy.templatetags.Components",
         "documentation": {}
     },
@@ -70,7 +70,7 @@
         "kind": 2,
         "importPath": "beautypy.templatetags.Components",
         "description": "beautypy.templatetags.Components",
-        "peekOfCode": "def LoadBeautypyCSS(url=None):\n    css_link = static(url)\n    if css_link:\n     return format_html('<link href=\"{}\" rel=\"stylesheet\">', css_link)\n    else:\n        cdn = \"https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4\"\n        return format_html('<script src=\"{}\"></script>', cdn)\n@register.simple_tag\ndef Button(label, type=\"button\", variant=\"primary\", css_class=\"\", tag_id=None):\n    color_classes = {",
+        "peekOfCode": "def LoadBeautypyCSS(url=None):\n    css_link = static(url)\n    if css_link == None:\n        cdn = \"https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4\"\n        return format_html('<script src=\"{}\"></script>', cdn)\n    else:\n        return format_html('<link href=\"{}\" rel=\"stylesheet\">', css_link)\n@register.simple_tag\ndef Button(label, type=\"button\", variant=\"primary\", css_class=\"\", tag_id=None):\n    color_classes = {",
         "detail": "beautypy.templatetags.Components",
         "documentation": {}
     },
@@ -88,7 +88,7 @@
         "kind": 2,
         "importPath": "beautypy.templatetags.Components",
         "description": "beautypy.templatetags.Components",
-        "peekOfCode": "def Link(url, label, css_class=\"btn btn-link\", tag_id=None):\n    return format_html('<a href=\"{}\" class=\"{} rounded-md hover:bg-opacity-80 transition dureation-300\" id=\"{}\">{}</a>', url, css_class, tag_id, label)\n@register.simple_tag\ndef Alert(message, alert_type=\"info\", css_class=\"alert\", tag_id=None):\n    color_classes = {\n        \"info\": \"bg-blue-100 border border-blue-400 text-blue-700\",\n        \"success\": \"bg-green-100 border border-green-400 text-green-700\",\n        \"warning\": \"bg-yellow-100 border border-yellow-400 text-yellow-700\",\n        \"error\": \"bg-red-100 border border-red-400 text-red-700\",\n    }",
+        "peekOfCode": "def Link(url, label, css_class=\"btn btn-link\", tag_id=None):\n    return format_html(\n        '<a href=\"{}\" class=\"{} rounded-md hover:bg-opacity-80 transition dureation-300\" id=\"{}\">{}</a>',\n        url,\n        css_class,\n        tag_id,\n        label,\n    )\n@register.simple_tag\ndef Alert(message, alert_type=\"info\", css_class=\"alert\", tag_id=None):",
         "detail": "beautypy.templatetags.Components",
         "documentation": {}
     },
@@ -106,7 +106,7 @@
         "kind": 2,
         "importPath": "beautypy.templatetags.Components",
         "description": "beautypy.templatetags.Components",
-        "peekOfCode": "def InputField(name, value=\"\", input_type=\"text\", css_class=\"form-control\", tag_id=None):\n    return format_html(\n        '<input type=\"{}\" name=\"{}\" value=\"{}\" class=\"{}\" id=\"{}\">',\n        input_type,\n        name,\n        value,\n        css_class,\n        tag_id,\n    )\n@register.simple_tag",
+        "peekOfCode": "def InputField(\n    name, value=\"\", input_type=\"text\", css_class=\"form-control\", tag_id=None\n):\n    return format_html(\n        '<input type=\"{}\" name=\"{}\" value=\"{}\" class=\"{}\" id=\"{}\">',\n        input_type,\n        name,\n        value,\n        css_class,\n        tag_id,",
         "detail": "beautypy.templatetags.Components",
         "documentation": {}
     },
@@ -142,7 +142,7 @@
         "kind": 2,
         "importPath": "beautypy.templatetags.Components",
         "description": "beautypy.templatetags.Components",
-        "peekOfCode": "def block_tag(tag_name, end_tag_name):\n    def tag_func(parser, token):\n        bits = token.split_contents()\n        args = bits[1:]\n        kwargs = token_kwargs(args, parser)\n        css_class = kwargs.get(\"css_class\", None)\n        tag_id = kwargs.get(\"tag_id\",None)\n        title = kwargs.get(\"title\", None)\n        nodelist = parser.parse((end_tag_name,))\n        parser.delete_first_token()",
+        "peekOfCode": "def block_tag(tag_name, end_tag_name):\n    def tag_func(parser, token):\n        bits = token.split_contents()\n        args = bits[1:]\n        kwargs = token_kwargs(args, parser)\n        css_class = kwargs.get(\"css_class\", None)\n        tag_id = kwargs.get(\"tag_id\", None)\n        title = kwargs.get(\"title\", None)\n        nodelist = parser.parse((end_tag_name,))\n        parser.delete_first_token()",
         "detail": "beautypy.templatetags.Components",
         "documentation": {}
     },
@@ -151,7 +151,7 @@
         "kind": 5,
         "importPath": "beautypy.templatetags.Components",
         "description": "beautypy.templatetags.Components",
-        "peekOfCode": "register = template.Library()\n@register.simple_tag\ndef LoadBeautypyJS():\n    js_link = static(\"Bundles/JSBundles/beautypy.js\")\n    return format_html('<script src=\"{}\" defer></script>', js_link)\n@register.simple_tag\ndef LoadBeautypyCSS(url=None):\n    css_link = static(url)\n    if css_link:\n     return format_html('<link href=\"{}\" rel=\"stylesheet\">', css_link)",
+        "peekOfCode": "register = template.Library()\n@register.simple_tag\ndef LoadBeautypyJS():\n    js_link = static(\"Bundles/JSBundles/beautypy.js\")\n    return format_html('<script src=\"{}\" defer></script>', js_link)\n@register.simple_tag\ndef LoadBeautypyCSS(url=None):\n    css_link = static(url)\n    if css_link == None:\n        cdn = \"https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4\"",
         "detail": "beautypy.templatetags.Components",
         "documentation": {}
     }
