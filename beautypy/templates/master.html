@@ -8,129 +8,142 @@
     <title>Beautypy Components</title>
     {% LoadBeautypyCSS %}
   </head>
-<body class="p-6 space-y-6 bg-gray-50 text-gray-800">
-{% Navbar css_class="p-4 shadow-md rounded-md bg-blue-500" tag_id="nav" %}
-  <div class="flex flex-col lg:flex-row lg:items-center items-start lg:justify-between gap-4">
+  <body class="bg-light">
 
-    <!-- Logo (left on desktop) -->
-    <div class="flex lg:justify-start">
-      <span class="font-bold text-lg text-white">Beautypy</span>
-    </div>
-
-    <!-- Nav Links (center on desktop) -->
-    <div class="flex flex-col items-start lg:items-center space-y-2 lg:flex-row lg:space-y-0 lg:space-x-4">
-      {% Link url="#" label="Home" css_class="text-white hover:text-black transition duration-300" %}
-      {% Link url="#" label="Features" css_class="text-white hover:text-black transition duration-300" %}
-      {% Link url="#" label="Pricing" css_class="text-white hover:text-black transition duration-300" %}
-    </div>
-
-    <!-- Auth Buttons (right on desktop) -->
-    <div class="flex justify-center lg:justify-end space-x-2">
-      {% Link url="#" label="SignUp" css_class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-500 hover:text-black transition duration-300" %}
-      {% Link url="#" label="SignIn" css_class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-400 hover:text-black transition duration-300" %}
-    </div>
-
-  </div>
-{% endNav %}
-
-{% Navbar css_class="p-4 shadow-md rounded-md bg-blue-500 relative" tag_id="nav" %}
-  <div class="flex items-center justify-between w-full">
-    
-    <!-- Left: Logo -->
-    <div class="flex items-center space-x-4">
-      <span class="font-bold text-lg text-white">Beautypy</span>
-    </div>
-
-    <!-- Middle: Nav Links (visible on large screens only) -->
-    <div class="hidden lg:flex space-x-6">
-      {% Link url="#" label="Home" css_class="text-white hover:text-black transition duration-300" %}
-      {% Link url="#" label="About" css_class="text-white hover:text-black transition duration-300" %}
-      {% Link url="#" label="Contact" css_class="text-white hover:text-black transition duration-300" %}
-    </div>
-
-    <!-- Right: Sign Up & Hamburger -->
-    <div class="flex items-center space-x-4">
-      {% Link url="#" label="Sign Up" css_class="hidden lg:inline-block bg-white text-blue-600 font-semibold px-4 py-2 rounded-md hover:bg-blue-100 transition duration-300" %}
-      {% Button css_class="lg:hidden text-white focus:outline-none" tag_id="hamburgerBtn" label="&#9776;" %}
-    </div>
-  </div>
-
-  <!-- Mobile menu -->
-  <div id="nav-menu" class="lg:hidden hidden flex-col space-y-2 mt-4">
-    {% Link url="#" label="Home" css_class="text-white hover:text-black transition duration-300" %}
-    {% Link url="#" label="About" css_class="text-white hover:text-black transition duration-300" %}
-    {% Link url="#" label="Contact" css_class="text-white hover:text-black transition duration-300" %}
-    {% Link url="#" label="Sign Up" css_class="bg-white text-blue-600 font-semibold px-4 py-2 rounded-md hover:bg-blue-100 transition duration-300" %}
-  </div>
-{% endNav %}
-
-
-
-    <!-- Buttons -->
-    {% Section title="Buttons" %}
-      <p>Use the Button tag to render styled buttons</p>
-      <div class="flex gap-3 flex-wrap">
-        {% Button label="Submit" type="submit" variant="primary" %}
-        {% Button label="Save Changes" type="submit" variant="success" %}
-        {% Button label="Delete" type="submit" variant="danger" %}
-        {% Button label="Custom" type="submit" variant="" css_class="bg-purple-600 text-white shadow-md" %}
+    {% Navbar css_class="navbar navbar-expand-lg navbar-dark bg-primary" tag_id="mainNav" %}
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Beautypy</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent" aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">{% Link url="#intro" label="Introduction" css_class="nav-link" %}</li>
+            <li class="nav-item">{% Link url="#installation" label="Installation" css_class="nav-link" %}</li>
+            <li class="nav-item">{% Link url="#components" label="Components" css_class="nav-link" %}</li>
+            <li class="nav-item">{% Link url="#example" label="Example" css_class="nav-link" %}</li>
+          </ul>
+          <div class="d-flex gap-2">
+            {% Link url="https://test.pypi.org/project/beautypy/" label="Test PyPI" css_class="btn btn-outline-light btn-sm" %}
+            {% Link url="https://github.com/webdevavi96/beautypy" label="GitHub" css_class="btn btn-light btn-sm" %}
+          </div>
+        </div>
       </div>
-    {% endSection %}
+    {% endNav %}
 
-    <!-- Links -->
-    {% Section title="Links" %}
-      <p class="mb-2">Use the Link tag to create styled anchor buttons</p>
-      {% Link url="https://webdevavi96.netlify.app/" label="Link" css_class="bg-blue-500 text-white py-2 px-4 rounded" %}
-    {% endSection %}
+    <div class="container-fluid py-4">
+      <div class="row">
+        <aside class="col-lg-3 col-xl-2 mb-4">
+          <div class="list-group sticky-top" style="top: 5rem;">
+            <a href="#intro" class="list-group-item list-group-item-action">Introduction</a>
+            <a href="#installation" class="list-group-item list-group-item-action">Installation</a>
+            <a href="#components" class="list-group-item list-group-item-action">Components</a>
+            <a href="#example" class="list-group-item list-group-item-action">Example</a>
+          </div>
+        </aside>
 
-    <!-- Alerts -->
-    {% Section title="Alerts" %}
-      <p>Use the Alert tag to show message banners</p>
-      <div class="space-y-2">
-        {% Alert message="Info alert message." alert_type="info" %}
-        {% Alert message="Success message!" alert_type="success" %}
-        {% Alert message="Warning notice!" alert_type="warning" %}
-        {% Alert message="Error occurred!" alert_type="error" %}
-      </div>
-    {% endSection %}
+        <main class="col-lg-9 col-xl-10">
+          {% Section title="Introduction" css_class="mb-5" tag_id="intro" %}
+            <p class="lead">Beautypy is a Django UI component library powered by Bootstrap 5. Use simple template tags to build modern, responsive interfaces fast.</p>
+          {% endSection %}
 
+          {% Section title="Installation" css_class="mb-5" tag_id="installation" %}
+            <h3 class="h6 text-uppercase text-muted">Install</h3>
+            <pre class="bg-dark text-white p-3 rounded"><code>pip install -i https://test.pypi.org/simple/ beautypy</code></pre>
+            <h3 class="h6 text-uppercase text-muted mt-4">Django Setup</h3>
+            <ul>
+              <li>Add <code>beautypy</code> to <code>INSTALLED_APPS</code></li>
+              <li>Load tags with <code>{% raw %}{% load Components %}{% endraw %}</code></li>
+              <li>Include CSS and JS using <code>{% raw %}{% LoadBeautypyCSS %}{% endraw %}</code> and <code>{% raw %}{% LoadBeautypyJS %}{% endraw %}</code></li>
+            </ul>
+          {% endSection %}
 
-    <!-- Container -->
-    {% Section title="Container Example" %}
-      <p>Use the Container tag to center page content</p>
-      {% Container css_class="max-w-4xl mx-auto bg-white p-4 rounded shadow" %}
-        <p>This is inside a responsive container</p>
-      {% endContainer %}
-    {% endSection %}
+          {% Section title="Components" css_class="mb-5" tag_id="components" %}
+            <h3 class="h6 text-uppercase text-muted mt-2">Buttons</h3>
+            <div class="d-flex flex-wrap gap-2 mb-3">
+              {% Button label="Primary" variant="primary" %}
+              {% Button label="Secondary" variant="secondary" %}
+              {% Button label="Success" variant="success" %}
+              {% Button label="Danger" variant="danger" %}
+              {% Button label="Warning" variant="warning" %}
+              {% Button label="Info" variant="info" %}
+            </div>
 
-    <!-- Tooltip -->
-    {% Section title="Tooltip" css_class="py-5" %}
-      <p>Use the Tooltip tag to show hover-based tooltips</p>
-      {% Tooltip title="Hello! I'm a tooltip" %}
-        <button class="bg-blue-600 text-white px-4 py-2 rounded">Hover me</button>
-      {% endTooltip %}
-    {% endSection %}
+            <h3 class="h6 text-uppercase text-muted mt-4">Links</h3>
+            <div class="d-flex flex-wrap gap-2 mb-3">
+              {% Link url="#" label="Link (btn-link)" css_class="btn btn-link" %}
+              {% Link url="#" label="Primary Link" css_class="btn btn-primary" %}
+            </div>
 
-    <!-- Toast -->
-    {% Section title="Toast" css_class="mt-4" %}
-      <p>Use the Toast tag to show temporary popup messages</p>
-      {% Toast message="This is a toast message" toast_type="success" %}
+            <h3 class="h6 text-uppercase text-muted mt-4">Alerts</h3>
+            <div class="d-grid gap-2 mb-3">
+              {% Alert message="Info alert message." alert_type="info" %}
+              {% Alert message="Success message!" alert_type="success" %}
+              {% Alert message="Warning notice!" alert_type="warning" %}
+              {% Alert message="Error occurred!" alert_type="error" %}
+            </div>
 
-    {% endSection %}
+            <h3 class="h6 text-uppercase text-muted mt-4">Form Controls</h3>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label" for="email">Email</label>
+                {% InputField name="email" input_type="email" css_class="form-control" tag_id="email" %}
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="name">Name</label>
+                {% InputField name="name" input_type="text" css_class="form-control" tag_id="name" %}
+              </div>
+            </div>
 
-    <!-- Accordion -->
-    {% Section title="Accordion" %}
-      <p>Use the Accordion tag to toggle content visibility</p>
-      {% Accordion title="Click to Expand" %}
-        <p>This is hidden content inside the accordion.</p>
-      {% endAccordion %}
-    {% endSection %}
+            <h3 class="h6 text-uppercase text-muted mt-4">Tooltip</h3>
+            {% Tooltip title="Helpful info!" css_class="d-inline-block" %}
+              <button class="btn btn-secondary">Hover me</button>
+            {% endTooltip %}
 
-    <!-- Footer -->
-    {% Footer css_class="text-center text-sm text-gray-500 mt-12 py-4" %}
-      &copy; 2025 Beautypy. All rights reserved.
+            <h3 class="h6 text-uppercase text-muted mt-4">Toast</h3>
+            <div class="mb-3">
+              {% Toast message="This is a toast message" toast_type="success" tag_id="demoToast" %}
+            </div>
+
+            <h3 class="h6 text-uppercase text-muted mt-4">Accordion</h3>
+            {% Accordion title="Click to Expand" css_class="mb-3" tag_id="docsAccordion" %}
+              <p class="mb-0">This is hidden content inside the accordion.</p>
+            {% endAccordion %}
+
+            <h3 class="h6 text-uppercase text-muted mt-4">Container</h3>
+            {% Container css_class="my-3 p-3 bg-white border rounded" tag_id="demo-container" %}
+              <p class="mb-0">This content is wrapped in a Bootstrap container.</p>
+            {% endContainer %}
+          {% endSection %}
+
+          {% Section title="Example" css_class="mb-5" tag_id="example" %}
+            <p>Starter template example:</p>
+            <pre class="bg-dark text-white p-3 rounded"><code>{% verbatim %}{% load Components %}
+<!DOCTYPE html>
+<html>
+  <head>
+    {% LoadBeautypyCSS %}
+  </head>
+  <body>
+    {% Navbar css_class="navbar navbar-expand-lg navbar-dark bg-primary" %}
+      <!-- Content -->
+    {% endNav %}
+
+    {% Footer css_class="text-center text-muted py-3" %}
+      &copy; 2025 Beautypy
     {% endFooter %}
 
+    {% LoadBeautypyJS %}
+  </body>
+</html>{% endverbatim %}</code></pre>
+          {% endSection %}
+
+          {% Footer css_class="text-center text-muted py-4" %}
+            &copy; 2025 Beautypy. All rights reserved.
+          {% endFooter %}
+        </main>
+      </div>
+    </div>
 
     {% LoadBeautypyJS %}
   </body>
