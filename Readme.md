@@ -2,6 +2,8 @@
 
 **Beautypy** is a Django UI component library that provides pre-designed, reusable template tags for building modern, responsive UIs with Bootstrap 5. Create beautiful interfaces in minutes—no HTML or CSS required!
 
+For more informatoin visit our official website [Beautypy](https://beautypy.pythonanywhere.com/)
+
 ---
 
 ## ✨ Features

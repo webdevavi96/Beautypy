@@ -8,22 +8,6 @@
         "documentation": {}
     },
     {
-        "label": "template",
-        "importPath": "django",
-        "description": "django",
-        "isExtraImport": true,
-        "detail": "django",
-        "documentation": {}
-    },
-    {
-        "label": "format_html",
-        "importPath": "django.utils.html",
-        "description": "django.utils.html",
-        "isExtraImport": true,
-        "detail": "django.utils.html",
-        "documentation": {}
-    },
-    {
         "label": "format_html",
         "importPath": "django.utils.html",
         "description": "django.utils.html",
@@ -48,43 +32,11 @@
         "documentation": {}
     },
     {
-        "label": "Node",
-        "importPath": "django.template",
-        "description": "django.template",
-        "isExtraImport": true,
-        "detail": "django.template",
-        "documentation": {}
-    },
-    {
-        "label": "TemplateSyntaxError",
-        "importPath": "django.template",
-        "description": "django.template",
-        "isExtraImport": true,
-        "detail": "django.template",
-        "documentation": {}
-    },
-    {
         "label": "token_kwargs",
         "importPath": "django.template.base",
         "description": "django.template.base",
         "isExtraImport": true,
         "detail": "django.template.base",
-        "documentation": {}
-    },
-    {
-        "label": "token_kwargs",
-        "importPath": "django.template.base",
-        "description": "django.template.base",
-        "isExtraImport": true,
-        "detail": "django.template.base",
-        "documentation": {}
-    },
-    {
-        "label": "static",
-        "importPath": "django.templatetags.static",
-        "description": "django.templatetags.static",
-        "isExtraImport": true,
-        "detail": "django.templatetags.static",
         "documentation": {}
     },
     {
@@ -201,114 +153,6 @@
         "description": "beautypy.templatetags.Components",
         "peekOfCode": "register = template.Library()\n@register.simple_tag\ndef LoadBeautypyJS():\n    js_link = static(\"node_modules/bootstrap/dist/js/bootstrap.min.js\")\n    if js_link:\n        return format_html('<script src=\"{}\" defer></script>', js_link)\n    else:\n        return format_html('<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q\" crossorigin=\"anonymous\"></script>')\n@register.simple_tag\ndef LoadBeautypyCSS():",
         "detail": "beautypy.templatetags.Components",
-        "documentation": {}
-    },
-    {
-        "label": "BlockNode",
-        "kind": 6,
-        "importPath": "beautypy-0.0.33.beautypy.templatetags.Components",
-        "description": "beautypy-0.0.33.beautypy.templatetags.Components",
-        "peekOfCode": "class BlockNode(Node):\n    def __init__(self, nodelist, tag_name, css_class=None, title=None, tag_id=None):\n        self.nodelist = nodelist\n        self.tag_name = tag_name\n        self.css_class = css_class\n        self.title = title\n        self.tag_id = tag_id\n    def render(self, context):\n        content = self.nodelist.render(context)\n        css_class = self.css_class.resolve(context) if self.css_class else \"\"",
-        "detail": "beautypy-0.0.33.beautypy.templatetags.Components",
-        "documentation": {}
-    },
-    {
-        "label": "LoadBeautypyJS",
-        "kind": 2,
-        "importPath": "beautypy-0.0.33.beautypy.templatetags.Components",
-        "description": "beautypy-0.0.33.beautypy.templatetags.Components",
-        "peekOfCode": "def LoadBeautypyJS():\n    js_link = static(\"node_modules/bootstrap/dist/js/bootstrap.min.js\")\n    if js_link:\n        return format_html('<script src=\"{}\" defer></script>', js_link)\n    else:\n        return format_html('<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q\" crossorigin=\"anonymous\"></script>')\n@register.simple_tag\ndef LoadBeautypyCSS():\n    css_link = static(\"node_modules/bootstrap/dist/css/bootstrap.min.css\")\n    if css_link:",
-        "detail": "beautypy-0.0.33.beautypy.templatetags.Components",
-        "documentation": {}
-    },
-    {
-        "label": "LoadBeautypyCSS",
-        "kind": 2,
-        "importPath": "beautypy-0.0.33.beautypy.templatetags.Components",
-        "description": "beautypy-0.0.33.beautypy.templatetags.Components",
-        "peekOfCode": "def LoadBeautypyCSS():\n    css_link = static(\"node_modules/bootstrap/dist/css/bootstrap.min.css\")\n    if css_link:\n        return format_html('<link href=\"{}\" rel=\"stylesheet\">', css_link)\n    else:\n        return format_html(\n            '<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr\" crossorigin=\"anonymous\">'\n        )\n@register.simple_tag\ndef Button(label, type=\"button\", variant=\"primary\", css_class=\"\", tag_id=None):",
-        "detail": "beautypy-0.0.33.beautypy.templatetags.Components",
-        "documentation": {}
-    },
-    {
-        "label": "Button",
-        "kind": 2,
-        "importPath": "beautypy-0.0.33.beautypy.templatetags.Components",
-        "description": "beautypy-0.0.33.beautypy.templatetags.Components",
-        "peekOfCode": "def Button(label, type=\"button\", variant=\"primary\", css_class=\"\", tag_id=None):\n    variant_class = f\"btn btn-{variant}\" if variant else \"btn btn-primary\"\n    classes = f\"{variant_class} {css_class}\".strip()\n    return format_html(\n        '<button type=\"{}\" class=\"{}\" id=\"{}\">{}</button>',\n        type,\n        classes,\n        tag_id or '',\n        label,\n    )",
-        "detail": "beautypy-0.0.33.beautypy.templatetags.Components",
-        "documentation": {}
-    },
-    {
-        "label": "Link",
-        "kind": 2,
-        "importPath": "beautypy-0.0.33.beautypy.templatetags.Components",
-        "description": "beautypy-0.0.33.beautypy.templatetags.Components",
-        "peekOfCode": "def Link(url, label, css_class=\"btn btn-link\", tag_id=None):\n    return format_html(\n        '<a href=\"{}\" class=\"{}\" id=\"{}\">{}</a>',\n        url,\n        css_class,\n        tag_id or '',\n        label,\n    )\n@register.simple_tag\ndef Alert(message, alert_type=\"info\", css_class=\"alert\", tag_id=None):",
-        "detail": "beautypy-0.0.33.beautypy.templatetags.Components",
-        "documentation": {}
-    },
-    {
-        "label": "Alert",
-        "kind": 2,
-        "importPath": "beautypy-0.0.33.beautypy.templatetags.Components",
-        "description": "beautypy-0.0.33.beautypy.templatetags.Components",
-        "peekOfCode": "def Alert(message, alert_type=\"info\", css_class=\"alert\", tag_id=None):\n    color_classes = {\n        \"info\": \"alert alert-info\",\n        \"success\": \"alert alert-success\",\n        \"warning\": \"alert alert-warning\",\n        \"error\": \"alert alert-danger\",\n    }\n    default_classes = color_classes.get(alert_type, \"alert alert-info\")\n    classes = f\"{default_classes} {css_class}\".strip()\n    return format_html(",
-        "detail": "beautypy-0.0.33.beautypy.templatetags.Components",
-        "documentation": {}
-    },
-    {
-        "label": "InputField",
-        "kind": 2,
-        "importPath": "beautypy-0.0.33.beautypy.templatetags.Components",
-        "description": "beautypy-0.0.33.beautypy.templatetags.Components",
-        "peekOfCode": "def InputField(\n    name, value=\"\", input_type=\"text\", css_class=\"form-control\", tag_id=None\n):\n    return format_html(\n        '<input type=\"{}\" name=\"{}\" value=\"{}\" class=\"{}\" id=\"{}\">',\n        input_type,\n        name,\n        value,\n        css_class,\n        tag_id or '',",
-        "detail": "beautypy-0.0.33.beautypy.templatetags.Components",
-        "documentation": {}
-    },
-    {
-        "label": "InputLabel",
-        "kind": 2,
-        "importPath": "beautypy-0.0.33.beautypy.templatetags.Components",
-        "description": "beautypy-0.0.33.beautypy.templatetags.Components",
-        "peekOfCode": "def InputLabel(name, label_text, css_class=\"form-label\", tag_id=\"label\"):\n    return format_html(\n        '<label for=\"{}\" class=\"{}\" id=\"{}\">{}</label>', name, css_class, tag_id, label_text\n    )\n@register.simple_tag\ndef FormGroup(label, input_field):\n    return format_html(\n        '<div class=\"mb-3\">{} {}</div>',\n        InputLabel(label, label),\n        input_field,",
-        "detail": "beautypy-0.0.33.beautypy.templatetags.Components",
-        "documentation": {}
-    },
-    {
-        "label": "FormGroup",
-        "kind": 2,
-        "importPath": "beautypy-0.0.33.beautypy.templatetags.Components",
-        "description": "beautypy-0.0.33.beautypy.templatetags.Components",
-        "peekOfCode": "def FormGroup(label, input_field):\n    return format_html(\n        '<div class=\"mb-3\">{} {}</div>',\n        InputLabel(label, label),\n        input_field,\n    )\n@register.simple_tag\ndef Toast(message, toast_type=\"info\", tag_id=None):\n    color_classes = {\n        \"info\": \"bg-info text-white\",",
-        "detail": "beautypy-0.0.33.beautypy.templatetags.Components",
-        "documentation": {}
-    },
-    {
-        "label": "Toast",
-        "kind": 2,
-        "importPath": "beautypy-0.0.33.beautypy.templatetags.Components",
-        "description": "beautypy-0.0.33.beautypy.templatetags.Components",
-        "peekOfCode": "def Toast(message, toast_type=\"info\", tag_id=None):\n    color_classes = {\n        \"info\": \"bg-info text-white\",\n        \"success\": \"bg-success text-white\",\n        \"warning\": \"bg-warning text-dark\",\n        \"error\": \"bg-danger text-white\",\n    }\n    bg_color = color_classes.get(toast_type, \"bg-secondary text-white\")\n    return format_html(\n        '<div class=\"toast align-items-center {} border-0 show\" role=\"alert\" aria-live=\"assertive\" aria-atomic=\"true\" id=\"{}\">'",
-        "detail": "beautypy-0.0.33.beautypy.templatetags.Components",
-        "documentation": {}
-    },
-    {
-        "label": "block_tag",
-        "kind": 2,
-        "importPath": "beautypy-0.0.33.beautypy.templatetags.Components",
-        "description": "beautypy-0.0.33.beautypy.templatetags.Components",
-        "peekOfCode": "def block_tag(tag_name, end_tag_name):\n    def tag_func(parser, token):\n        bits = token.split_contents()\n        args = bits[1:]\n        kwargs = token_kwargs(args, parser)\n        css_class = kwargs.get(\"css_class\", None)\n        tag_id = kwargs.get(\"tag_id\", None)\n        title = kwargs.get(\"title\", None)\n        nodelist = parser.parse((end_tag_name,))\n        parser.delete_first_token()",
-        "detail": "beautypy-0.0.33.beautypy.templatetags.Components",
-        "documentation": {}
-    },
-    {
-        "label": "register",
-        "kind": 5,
-        "importPath": "beautypy-0.0.33.beautypy.templatetags.Components",
-        "description": "beautypy-0.0.33.beautypy.templatetags.Components",
-        "peekOfCode": "register = template.Library()\n@register.simple_tag\ndef LoadBeautypyJS():\n    js_link = static(\"node_modules/bootstrap/dist/js/bootstrap.min.js\")\n    if js_link:\n        return format_html('<script src=\"{}\" defer></script>', js_link)\n    else:\n        return format_html('<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q\" crossorigin=\"anonymous\"></script>')\n@register.simple_tag\ndef LoadBeautypyCSS():",
-        "detail": "beautypy-0.0.33.beautypy.templatetags.Components",
         "documentation": {}
     }
 ]
