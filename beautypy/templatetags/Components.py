@@ -6,13 +6,17 @@ from django.templatetags.static import static
 
 register = template.Library()
 
+
 @register.simple_tag
 def LoadBeautypyJS():
     js_link = static("node_modules/bootstrap/dist/js/bootstrap.min.js")
     if js_link:
         return format_html('<script src="{}" defer></script>', js_link)
     else:
-        return format_html('<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>')
+        return format_html(
+            '<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>'
+        )
+
 
 @register.simple_tag
 def LoadBeautypyCSS():
@@ -24,6 +28,7 @@ def LoadBeautypyCSS():
             '<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">'
         )
 
+
 @register.simple_tag
 def Button(label, type="button", variant="primary", css_class="", tag_id=None):
     variant_class = f"btn btn-{variant}" if variant else "btn btn-primary"
@@ -32,9 +37,10 @@ def Button(label, type="button", variant="primary", css_class="", tag_id=None):
         '<button type="{}" class="{}" id="{}">{}</button>',
         type,
         classes,
-        tag_id or '',
+        tag_id or "",
         label,
     )
+
 
 @register.simple_tag
 def Link(url, label, css_class="btn btn-link", tag_id=None):
@@ -42,9 +48,10 @@ def Link(url, label, css_class="btn btn-link", tag_id=None):
         '<a href="{}" class="{}" id="{}">{}</a>',
         url,
         css_class,
-        tag_id or '',
+        tag_id or "",
         label,
     )
+
 
 @register.simple_tag
 def Alert(message, alert_type="info", css_class="alert", tag_id=None):
@@ -58,13 +65,14 @@ def Alert(message, alert_type="info", css_class="alert", tag_id=None):
     classes = f"{default_classes} {css_class}".strip()
     return format_html(
         '<div class="{} d-flex justify-content-between align-items-center" role="alert" id="{}">'
-        '<span>{}</span>'
+        "<span>{}</span>"
         '<button type="button" class="btn-close ms-2" data-bs-dismiss="alert" aria-label="Close"></button>'
-        '</div>',
+        "</div>",
         classes,
-        tag_id or '',
+        tag_id or "",
         message,
     )
+
 
 @register.simple_tag
 def InputField(
@@ -76,14 +84,20 @@ def InputField(
         name,
         value,
         css_class,
-        tag_id or '',
+        tag_id or "",
     )
+
 
 @register.simple_tag
 def InputLabel(name, label_text, css_class="form-label", tag_id="label"):
     return format_html(
-        '<label for="{}" class="{}" id="{}">{}</label>', name, css_class, tag_id, label_text
+        '<label for="{}" class="{}" id="{}">{}</label>',
+        name,
+        css_class,
+        tag_id,
+        label_text,
     )
+
 
 @register.simple_tag
 def FormGroup(label, input_field):
@@ -92,6 +106,7 @@ def FormGroup(label, input_field):
         InputLabel(label, label),
         input_field,
     )
+
 
 @register.simple_tag
 def Toast(message, toast_type="info", tag_id=None):
@@ -107,12 +122,13 @@ def Toast(message, toast_type="info", tag_id=None):
         '<div class="d-flex">'
         '<div class="toast-body">{}</div>'
         '<button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>'
-        '</div>'
-        '</div>',
+        "</div>"
+        "</div>",
         bg_color,
-        tag_id or '',
+        tag_id or "",
         message,
     )
+
 
 class BlockNode(Node):
     def __init__(self, nodelist, tag_name, css_class=None, title=None, tag_id=None):
@@ -133,7 +149,7 @@ class BlockNode(Node):
                 '<section class="{} mb-4" id="{}">{}<div>{}</div></section>',
                 f"{css_class} container-fluid".strip(),
                 tag_id,
-                f'<h2 class="h5 mb-3">{title}</h2>' if title else '',
+                f'<h2 class="h5 mb-3">{title}</h2>' if title else "",
                 content,
             )
         elif self.tag_name == "Container":
@@ -170,12 +186,12 @@ class BlockNode(Node):
                 '<div class="accordion-item">'
                 '<h2 class="accordion-header">'
                 '<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{}" aria-expanded="true" aria-controls="collapse-{}">{}</button>'
-                '</h2>'
+                "</h2>"
                 '<div id="collapse-{}" class="accordion-collapse collapse show" aria-labelledby="heading-{}" data-bs-parent="#{}">'
                 '<div class="accordion-body">{}</div>'
-                '</div>'
-                '</div>'
-                '</div>',
+                "</div>"
+                "</div>"
+                "</div>",
                 css_class,
                 tag_id,
                 tag_id,
@@ -188,6 +204,7 @@ class BlockNode(Node):
             )
         return content
 
+
 def block_tag(tag_name, end_tag_name):
     def tag_func(parser, token):
         bits = token.split_contents()
@@ -199,7 +216,16 @@ def block_tag(tag_name, end_tag_name):
         nodelist = parser.parse((end_tag_name,))
         parser.delete_first_token()
         return BlockNode(nodelist, tag_name, css_class, title, tag_id)
+
     return tag_func
+
+
+@register.filter(name="add_class")
+def add_class(field, css):
+    existing_classes = field.field.widget.attrs.get("class", "")
+    new_classes = f"{existing_classes} {css}".strip()
+    return field.as_widget(attrs={"class": new_classes})
+
 
 register.tag("Section", block_tag("Section", "endSection"))
 register.tag("Container", block_tag("Container", "endContainer"))

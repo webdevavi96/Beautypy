@@ -45,7 +45,7 @@ INSTALLED_APPS = [
 ```
 
 2. **Templates Context Processor**
-Make sure your TEMPLATES setting includes:
+   Make sure your TEMPLATES setting includes:
 
 ```python
 'OPTIONS': {
@@ -57,7 +57,7 @@ Make sure your TEMPLATES setting includes:
 ```
 
 3. **Load Beautypy Tags**
-In your templates top of your html page:
+   In your templates top of your html page:
 
 ```django
 {% load Components %}

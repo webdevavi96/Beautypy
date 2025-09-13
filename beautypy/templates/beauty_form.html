@@ -1,0 +1,31 @@
+{% load static %}
+{% load form_filters %}
+
+<form method="post" class="container my-4 p-4 rounded shadow bg-light" style="max-width: 600px;">
+    {% csrf_token %}
+
+    {% for field in form %}
+        <div class="mb-3">
+            <label for="{{ field.id_for_label }}" class="form-label fw-semibold">
+                {{ field.label }}
+            </label>
+            {{ field.as_widget|add_class:"form-control" }}
+
+            {% if field.help_text %}
+                <div class="form-text text-muted">{{ field.help_text }}</div>
+            {% endif %}
+
+            {% if field.errors %}
+                <div class="text-danger small mt-1">
+                    {{ field.errors|striptags }}
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+
+    <div class="d-grid">
+        <button type="submit" class="btn btn-primary btn-lg">
+            {{ form.submit_label|default:"Submit" }}
+        </button>
+    </div>
+</form>
